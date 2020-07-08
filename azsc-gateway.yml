@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: index_route
+          uri: https://azsc-from-paloit-azsc-gateway.azuremicroservices.io/AZSC-USER-DIRECTORY-SERVICE/api/
+          predicates:
+            - Path=/user/api/
+        - id: search_route
+          uri: https://azsc-from-paloit-azsc-gateway.azuremicroservices.io/AZSC-SEARCH-DIRECTORY-SERVICE/api/
+          predicates:
+            - Path=/search/api/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

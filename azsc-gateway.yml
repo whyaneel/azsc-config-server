@@ -1,15 +1,22 @@
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
-        - id: index_route
-          uri: https://azsc-from-paloit-azsc-gateway.azuremicroservices.io/AZSC-USER-DIRECTORY-SERVICE/api/
+        - id: admin_route
+          uri: lb://azsc-user-directory-service
           predicates:
-            - Path=/user/api/
+            - Path=/admin/**
+          filters:
+            - RewritePath=/admin(?<segment>/?.*), $\{segment}
         - id: search_route
-          uri: https://azsc-from-paloit-azsc-gateway.azuremicroservices.io/AZSC-SEARCH-DIRECTORY-SERVICE/api/
+          uri: lb://azsc-search-directory-service
           predicates:
-            - Path=/search/api/
+            - Path=/search/**
+          filters:
+            - RewritePath=/search(?<segment>/?.*), $\{segment}
 management:
   endpoints:
     web:

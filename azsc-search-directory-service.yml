@@ -1,0 +1,20 @@
+spring:
+  main:
+    banner-mode: off
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://azsc-search-directory-replica.postgres.database.azure.com:5432/azsc-demo
+    username: postgres@azsc-postgres-server
+    password: Im4mPalo#
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

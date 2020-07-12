@@ -8,15 +8,15 @@ spring:
         - id: admin_route
           uri: lb://azsc-user-directory-service
           predicates:
-            - Path=/admin/**
+            - Path=/api/admin/**
           filters:
-            - RewritePath=/admin(?<segment>/?.*), $\{segment}
+            - RewritePath=/api/admin(?<segment>/?.*), /api$\{segment}
         - id: search_route
           uri: lb://azsc-search-directory-service
           predicates:
-            - Path=/search/**
+            - Path=/api/search/**
           filters:
-            - RewritePath=/search(?<segment>/?.*), $\{segment}
+            - RewritePath=/api/search(?<segment>/?.*), /api$\{segment}
 management:
   endpoints:
     web:
